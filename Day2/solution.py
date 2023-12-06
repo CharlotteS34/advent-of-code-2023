@@ -21,9 +21,14 @@ def puzzle_solution_1(input):
 
 def puzzle_solution_2(input):
     game_dict = convert_to_game_dict(input)
+    powers = [get_power_of_game(game) for game in game_dict.values()]
+    return sum(powers)
 
 def get_power_of_game(game_set):
-    return 0
+    min_red_value = max([val['red'] for val in game_set if 'red' in val.keys()])
+    min_blue_value = max([val['blue'] for val in game_set if 'blue' in val.keys()])
+    min_green_value = max([val['green'] for val in game_set if 'green' in val.keys()])
+    return min_red_value * min_blue_value * min_green_value
 
 def game_set_is_below_limit(game_set):
     limits_dict = {'red': 12, 'green': 13, 'blue': 14}
@@ -71,9 +76,6 @@ def game_set_is_below_limit_test():
     if (passed):
         print('All game_set_is_below_limit_test tests passed')
 
-def game_dict_power_test():
-    game_
-
 def puzzle_solution_1_test():
     input = get_test_input()
     solution = puzzle_solution_1(input)
@@ -92,3 +94,5 @@ def puzzle_solution_2_test():
 
 puzzle_solution_1_test()
 print("Puzzle 1 solution: " + str(puzzle_solution_1(get_puzzle_input())))
+puzzle_solution_2_test()
+print("Puzzle 2 solution: " + str(puzzle_solution_2(get_puzzle_input())))
