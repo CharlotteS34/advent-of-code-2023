@@ -83,15 +83,11 @@ class IslandAlmanac:
         return location_number
     
     def get_minimum_location_number(self):
-            location_numbers = self.get_location_numbers()
-            for location_number in location_numbers:
-                if (self.seed_number_exists_for_location_number(location_number)):
-                    return location_number
-            return None
-            # minimum_location_number = self.get_next_lowest_number(0, location_number_ranges)
-            # while (not self.seed_number_exists_for_location_number(minimum_location_number)):
-            #     minimum_location_number = self.get_next_lowest_number(minimum_location_number, location_number_ranges)
-            # return minimum_location_number
+        for i in range(43318447, 1000000000):
+            print("Checking " + str(i))
+            if (self.seed_number_exists_for_location_number(i)):
+                return i
+        return None
 
     def get_location_numbers(self):
         humidity_to_location_map = self.maps["humidity-to-location map"]
@@ -143,12 +139,12 @@ class IslandAlmanac:
         return seed_number
         
         
-match_source_to_destination_test()
-print("testing part 2 solution")
-test_input = get_test_input()
-almanac = IslandAlmanac(test_input)
-print(almanac.get_minimum_location_number())
-# print("Part 2 solution")
-# input = get_puzzle_input()
-# almanac = IslandAlmanac(input)
+# match_source_to_destination_test()
+# print("testing part 2 solution")
+# test_input = get_test_input()
+# almanac = IslandAlmanac(test_input)
 # print(almanac.get_minimum_location_number())
+print("Part 2 solution")
+input = get_puzzle_input()
+almanac = IslandAlmanac(input)
+print(almanac.get_minimum_location_number())
